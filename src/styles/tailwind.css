@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-primary: #FFD164; /* golden yellow */
+    --color-primary-foreground: #222222; /* dark background */
+    
+    /* Secondary Colors */
+    --color-secondary: #F4E4A6; /* light golden */
+    --color-secondary-foreground: #222222; /* dark background */
+    
+    /* Accent Colors */
+    --color-accent: #E6C200; /* golden accent */
+    --color-accent-foreground: #222222; /* dark background */
+    
+    /* Background Colors */
+    --color-background: #222222; /* dark background */
+    --color-surface: #2A2A2A; /* surface */
+    
+    /* Text Colors */
+    --color-text-primary: #FFFFFF; /* white */
+    --color-text-secondary: #CCCCCC; /* light gray */
+    
+    /* Status Colors */
+    --color-success: #4CAF50; /* green-500 */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    --color-warning: #FF9800; /* orange-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    --color-error: #F44336; /* red-500 */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    /* Border Colors */
+    --color-border: #FFD164; /* golden yellow */
+    --color-border-muted: #2A2A2A; /* surface */
+    
+    /* Shadow Colors */
+    --shadow-primary: rgba(255, 209, 100, 0.3); /* golden shadow */
+    --shadow-card: rgba(0, 0, 0, 0.1); /* card shadow */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-text-primary font-body;
+    font-family: 'Lora', serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .font-heading {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-body {
+    font-family: 'Lora', serif;
+  }
+  
+  .font-cta {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .font-accent {
+    font-family: 'Dancing Script', cursive;
+  }
+  
+  .shadow-primary {
+    box-shadow: 0 4px 12px var(--shadow-primary);
+  }
+  
+  .shadow-card {
+    box-shadow: 0 2px 8px var(--shadow-card);
+  }
+  
+  .transition-smooth {
+    transition: all 250ms ease-in-out;
+  }
+  
+  .golden-glow {
+    box-shadow: 0 0 20px rgba(255, 209, 100, 0.4);
+  }
+}
