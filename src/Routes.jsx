@@ -7,13 +7,13 @@ import LandingPage from "pages/landing-page/LandingPage";
 
 const Routes = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Glora-Beauty-Lounge/">
       <ErrorBoundary>
-      <ScrollToTop />
-      <RouterRoutes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="*" element={<NotFound />} />
-      </RouterRoutes>
+        <ScrollToTop />
+        <RouterRoutes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="*" element={<NotFound />} />
+        </RouterRoutes>
       </ErrorBoundary>
     </BrowserRouter>
   );
