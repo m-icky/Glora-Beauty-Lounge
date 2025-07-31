@@ -4,7 +4,8 @@ img.main-round-logo {
   animation: pop 1.5s infinite ease-in-out;
   transition: transform 1s ease;
   border-radius: 100%;
-  transition: box-shadow .5s ease
+  transition: box-shadow .5s ease;
+  box-shadow: 0 0 30px #FFD164;
 }
 
 @keyframes pop {
@@ -14,10 +15,6 @@ img.main-round-logo {
   50% {
     transform: scale(1.1); /* pop effect */
   }
-}
-
-img.main-round-logo:hover {
-    box-shadow: 0 0 30px #FFD164;
 }
 
 .carousal-div {
@@ -98,4 +95,13 @@ img.main-round-logo:hover {
     gap: 0.25rem;
     text-align: center;
   }
+}
+
+.main-round-logo.loader {
+  position: absolute;
+}
+
+.initial-loader {
+  width: 15rem;
+  height: 15rem;
 }
