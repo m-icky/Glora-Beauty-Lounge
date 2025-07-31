@@ -13,20 +13,18 @@ const PromotionalOffers = () => {
   const offers = [
     {
       id: 1,
-      title: "New Client Special",
-      discount: "25% OFF",
-      description: "First-time clients save 20% on any service",
-      // originalPrice: "$150",
-      // discountedPrice: "$120",
+      title: "Family, Friends, or Group Offer",
+      discount: "15% OFF",
+      description: "Enjoy 15% off when you book as a family, with friends, or in a group.",
       validUntil: "Limited Time",
-      terms: "Valid for new clients only. Cannot be combined with other offers.",
+      terms: "Valid for group bookings only. Cannot be combined with other offers.",
       popular: false,
       services: ["Hair Styling", "Makeup", "Skincare", "Nail Services"]
     },
     {
       id: 2,
       title: "Membership Special Offer",
-      discount: "15% OFF",
+      discount: "25% OFF",
       description: "Exclusive membership discount for loyal clients",
       // originalPrice: "$200",
       // discountedPrice: "$170",
@@ -281,7 +279,7 @@ const PromotionalOffers = () => {
         </div>
 
         {/* Exit Intent Offer Preview */}
-        <div className="mt-16 bg-background rounded-2xl p-8 border border-border-muted text-center">
+        {/* <div className="mt-16 bg-background rounded-2xl p-8 border border-border-muted text-center">
           <h3 className="text-2xl font-heading font-bold text-text-primary mb-4">
             Still Deciding?
           </h3>
@@ -304,7 +302,7 @@ const PromotionalOffers = () => {
             <Button
               variant="ghost"
               size="lg"
-              onClick={() => window.open('tel:+1234567890', '_self')}
+              onClick={() => window.open('tel:+919846161869', '_self')}
               className="font-cta font-semibold text-primary hover:text-primary-foreground hover:bg-primary"
               iconName="Phone"
               iconPosition="left"
@@ -312,7 +310,7 @@ const PromotionalOffers = () => {
               Call for Questions
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

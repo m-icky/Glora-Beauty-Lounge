@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
 import Icon from '../../../components/AppIcon';
+import emailjs from 'emailjs-com';
+import { useWindowSize } from 'react-use'
+import Confetti from 'react-confetti'
 
 const BookingForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -13,13 +16,17 @@ const BookingForm = () => {
     lastName: '',
     email: '',
     phone: '',
-    whatsapp: '',
-    specialRequests: ''
   });
   const [availableSlots, setAvailableSlots] = useState([]);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-
+  const [errors, setErrors] = useState({});
+  const { width, height } = useWindowSize()
+  const SERVICE_ID = 'service_wn5mqh7';
+  const USER_TEMPLATE_ID = 'template_q3k88r5';
+  const PUBLIC_KEY = 'aoIY4N1mffCDKHYKv';
+  const ADMIN_TEMPLATE_ID = 'template_tzoebye';
   const services = [
     'Hair Styling',
     'Professional Makeup',
@@ -27,13 +34,15 @@ const BookingForm = () => {
     'Nail Services',
     'Bridal Packages',
     'Special Treatments',
+    'Other Services',
     'Free Consultation'
   ];
 
   const timeSlots = [
     '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
     '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM',
-    '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM'
+    '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM',
+    '6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM', '8:00 PM', '8:30 PM'
   ];
 
   useEffect(() => {
@@ -51,17 +60,20 @@ const BookingForm = () => {
       const selectedDate = new Date(formData.date);
       const dayOfWeek = selectedDate.getDay();
       
-      // Weekend slots are more limited
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        setAvailableSlots(timeSlots.slice(2, 12)); // 10 AM - 4 PM
-      } else {
-        setAvailableSlots(timeSlots.slice(0, 16)); // 9 AM - 5:30 PM
-      }
+    // Weekend slots are more limited
+      if (dayOfWeek === 0) {
+    // Sunday: 10:00 AM - 8:30 PM
+      setAvailableSlots(timeSlots.slice(2, 24));
+    } else {
+      // Monday to Saturday: 9:00 AM - 8:30 PM
+      setAvailableSlots(timeSlots.slice(0, 24));
+    }
     }
   }, [formData.date]);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
   const handleNextStep = () => {
@@ -76,18 +88,50 @@ const BookingForm = () => {
     }
   };
 
+  const validateField = (field, value) => {
+    let error = "";
+      switch (field) {
+        case "firstName":
+        case "lastName":
+          if (!value.trim()) error = "This field is required.";
+          break;
+
+       case "email":
+          if (!value.trim()) {
+            error = "Email is required.";
+          } else if (!/^\S+@\S+\.\S+$/.test(value)) {
+            error = "Enter a valid email address.";
+          } else if (!value.toLowerCase().endsWith("@gmail.com")) {
+            error = "Only @gmail.com email addresses are allowed.";
+          }
+          break;
+
+        case "phone":
+          const cleanedPhone = value.replace(/\D/g, ""); // remove non-digit characters
+          if (!cleanedPhone) {
+            error = "Phone number is required.";
+          } else if (cleanedPhone.length !== 10) {
+            error = "Phone number must be exactly 10 digits.";
+          }
+          break;
+
+        default:
+          break;
+      }
+    setErrors((prev) => ({ ...prev, [field]: error }));
+    return error;
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 20000));
-    
-    setIsSubmitting(false);
+    try {
+    await emailjs.send(SERVICE_ID, USER_TEMPLATE_ID, formData, PUBLIC_KEY);
+    await emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, formData, PUBLIC_KEY);
     setShowSuccess(true);
-    
-    // Reset form after success
+    setBookingSuccess(true);
     setTimeout(() => {
+      setBookingSuccess(false);
       setShowSuccess(false);
       setCurrentStep(1);
       setFormData({
@@ -98,20 +142,49 @@ const BookingForm = () => {
         lastName: '',
         email: '',
         phone: '',
-        whatsapp: '',
-        specialRequests: ''
       });
-    }, 20000);
-  };
+    }, 10000);
+    // Clear form data after successful submission
+    } catch (error) {
+      alert('Failed to send confirmation email, retry after sometime.');
+    }
+    setIsSubmitting(false);
+  };  
+
+  const bookAgain = () => {
+    setShowSuccess(false);
+      setCurrentStep(1);
+      setFormData({
+        service: '',
+        date: '',
+        time: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+      });
+  }
 
   const isStepValid = () => {
     switch (currentStep) {
-      case 1: 
-        return formData.service && formData.date && formData.time;
+      case 1:
+        return (
+          formData.service?.trim() &&
+          formData.date?.trim() &&
+          formData.time?.trim()
+        );
+
       case 2:
-        return formData.firstName && formData.lastName && formData.email && formData.phone;
+        const requiredFields = ["firstName", "lastName", "email", "phone"];
+        const hasEmptyFields = requiredFields.some(
+          (field) => !formData[field]?.trim()
+        );
+        const hasErrors = requiredFields.some((field) => errors[field]);
+        return !hasEmptyFields && !hasErrors;
+
       case 3:
         return true;
+
       default:
         return false;
     }
@@ -163,7 +236,7 @@ const BookingForm = () => {
                 <div className="flex items-center space-x-3">
                   <Icon name="MapPin" size={20} color="var(--color-primary)" />
                   <span className="font-body text-text-secondary">
-                    Location: 123 Beauty Street, Salon District
+                    Location: Glora Beauty Lounge, Metro City Plaza, VIP Road, Opp Cochin International Airport, Vappalasserry P.O, Ernakulam, 683572
                   </span>
                 </div>
               </div>
@@ -171,15 +244,15 @@ const BookingForm = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
               <Button
                 variant="primary"
-                onClick={() => window.open('https://calendar.google.com', '_blank')}
+                onClick={bookAgain}
                 iconName="Calendar"
                 iconPosition="left"
               >
-                Add to Calendar
+                Book again
               </Button>
               <Button
                 variant="outline"
-                onClick={() => window.open('tel:+1234567890', '_self')}
+                onClick={() => window.open('tel:+919846161869', '_self')}
                 iconName="Phone"
                 iconPosition="left"
               >
@@ -192,7 +265,16 @@ const BookingForm = () => {
     );
   }
 
+  
+
   return (
+    <>
+      {bookingSuccess && (
+      <Confetti
+        width={width}
+        height={height}
+      />
+    )}
     <section id="booking" className="py-16 lg:py-24 bg-surface">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
@@ -328,7 +410,7 @@ const BookingForm = () => {
 
             {/* Step 2: Personal Details */}
             {currentStep === 2 && (
-              <div className="space-y-6">
+             <div className="space-y-6">
                 <h3 className="text-2xl font-heading font-bold text-text-primary mb-6">
                   Your Contact Information
                 </h3>
@@ -341,11 +423,15 @@ const BookingForm = () => {
                     <Input
                       type="text"
                       value={formData.firstName}
-                      onChange={(e) => handleInputChange('firstName', e.target.value)}
+                      onChange={(e) => handleInputChange("firstName", e.target.value)}
+                      onBlur={(e) => validateField("firstName", e.target.value)}
                       placeholder="Enter your first name"
                       className="w-full"
                       required
                     />
+                    {errors.firstName && (
+                      <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+                    )}
                   </div>
 
                   <div>
@@ -355,11 +441,15 @@ const BookingForm = () => {
                     <Input
                       type="text"
                       value={formData.lastName}
-                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      onChange={(e) => handleInputChange("lastName", e.target.value)}
+                      onBlur={(e) => validateField("lastName", e.target.value)}
                       placeholder="Enter your last name"
                       className="w-full"
                       required
                     />
+                    {errors.lastName && (
+                      <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+                    )}
                   </div>
                 </div>
 
@@ -370,11 +460,15 @@ const BookingForm = () => {
                   <Input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    onBlur={(e) => validateField("email", e.target.value)}
                     placeholder="Enter your email address"
                     className="w-full"
                     required
                   />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -385,25 +479,23 @@ const BookingForm = () => {
                     <Input
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      placeholder="(123) 456-7890"
+                      onChange={(e) => {
+                        const input = e.target.value.replace(/\D/g, "");
+                        if (input.length <= 10) {
+                          handleInputChange("phone", input);
+                        }
+                      }}
+                      onBlur={(e) => validateField("phone", e.target.value)}
+                      placeholder="e.g. 9876543210"
                       className="w-full"
                       required
                     />
+
+                    {errors.phone && (
+                      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                    )}
                   </div>
 
-                  <div>
-                    <label className="block text-sm font-body font-medium text-text-primary mb-2">
-                      WhatsApp Number (Optional)
-                    </label>
-                    <Input
-                      type="tel"
-                      value={formData.whatsapp}
-                      onChange={(e) => handleInputChange('whatsapp', e.target.value)}
-                      placeholder="For appointment reminders"
-                      className="w-full"
-                    />
-                  </div>
                 </div>
               </div>
             )}
@@ -449,20 +541,6 @@ const BookingForm = () => {
                   </div>
                 </div>
 
-                {/* Special Requests */}
-                <div>
-                  <label className="block text-sm font-body font-medium text-text-primary mb-2">
-                    Special Requests or Notes (Optional)
-                  </label>
-                  <textarea
-                    value={formData.specialRequests}
-                    onChange={(e) => handleInputChange('specialRequests', e.target.value)}
-                    placeholder="Any specific requirements or preferences..."
-                    rows={4}
-                    className="w-full px-4 py-3 bg-surface border border-border-muted rounded-lg text-text-primary font-body focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                  />
-                </div>
-
                 {/* Terms and Conditions */}
                 <div className="bg-surface rounded-lg p-4 border border-border-muted">
                   <div className="flex items-start space-x-3">
@@ -488,7 +566,7 @@ const BookingForm = () => {
                 type="button"
                 variant="ghost"
                 onClick={handlePrevStep}
-                disabled={currentStep === 1}
+                disabled={currentStep === 1 || isSubmitting}
                 className={`font-cta font-semibold ${currentStep === 1 ? 'invisible' : ''}`}
                 iconName="ChevronLeft"
                 iconPosition="left"
@@ -518,7 +596,7 @@ const BookingForm = () => {
                   iconName="Calendar"
                   iconPosition="left"
                 >
-                  {isSubmitting ? 'Booking...' : 'Confirm Booking'}
+                  {isSubmitting ? 'Confirm Booking' : 'Booking Confirmed'}
                 </Button>
               )}
             </div>
@@ -532,16 +610,17 @@ const BookingForm = () => {
           </p>
           <Button
             variant="outline"
-            onClick={() => window.open('tel:+1234567890', '_self')}
+            onClick={() => window.open('tel:+919846161869', '_self')}
             className="font-cta font-semibold border-primary text-primary hover:bg-primary hover:text-primary-foreground"
             iconName="Phone"
             iconPosition="left"
           >
-            Call (123) 456-7890
+            Call +91 - 9846161869
           </Button>
         </div>
       </div>
     </section>
+    </>
   );
 };
 

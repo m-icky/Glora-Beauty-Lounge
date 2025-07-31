@@ -62,12 +62,12 @@ const FinalBookingCTA = () => {
   };
 
   const handleCallClick = () => {
-    window.open('tel:+1234567890', '_self');
+    window.open('tel:+919846161869', '_self');
   };
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Hi! I'd like to book an appointment at Glora Beauty Lounge.");
-    window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+    window.open(`https://wa.me/9846161869?text=${message}`, '_blank');
   };
 
   const closeExitIntent = () => {
@@ -76,7 +76,7 @@ const FinalBookingCTA = () => {
 
   return (
     <>
-      <section className="py-16 lg:py-24 bg-primary text-primary-foreground relative overflow-hidden">
+      <section className="bg-primary text-primary-foreground relative overflow-hidden footer-section">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-32 -translate-y-32" />
@@ -86,7 +86,7 @@ const FinalBookingCTA = () => {
 
         <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
           {/* Urgency Alert */}
-          <div className="bg-warning/20 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-warning/30">
+          {/* <div className="bg-warning/20 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-warning/30">
             <div className="flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0">
               <div className="flex items-center space-x-3">
                 <div className="w-3 h-3 bg-warning rounded-full animate-pulse" />
@@ -116,7 +116,7 @@ const FinalBookingCTA = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Main CTA Content */}
           <div className="text-center mb-12">
@@ -232,8 +232,24 @@ const FinalBookingCTA = () => {
               <p className="text-sm font-body opacity-80">100% guaranteed</p>
             </div>
           </div>
+
+          {/* copyright */}
+          <div className="sm:text-base flex flex-col items-center justify-center space-y-1 text-primary-foreground/80 copyright-div py-4">
+            <span className="text-sm font-body font">
+            &copy; Glora Beauty Lounge {new Date().getFullYear()}. All rights reserved.
+            </span>
+            <span className="text-xs font-body">
+              Made with ❤️ by 
+              <a
+              //  href="https://yourcompanywebsite.com"
+               > Mack.Pixels
+              </a>
+            </span>
+          </div>
+
         </div>
       </section>
+
 
       {/* Exit Intent Modal */}
       {/* {showExitIntent && (

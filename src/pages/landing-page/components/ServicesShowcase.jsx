@@ -219,12 +219,12 @@ const ServicesShowcase = () => {
               <Button
                 variant="ghost"
                 size="lg"
-                onClick={() => window.open('tel:+1234567890', '_self')}
+                onClick={() => window.open('tel:+919846161869', '_self')}
                 className="font-cta font-semibold text-primary hover:text-primary-foreground hover:bg-primary"
                 iconName="Phone"
                 iconPosition="left"
               >
-                Call Us: (123) 456-7890
+                Call Us: +91 - 9846161869
               </Button>
             </div>
           </div>

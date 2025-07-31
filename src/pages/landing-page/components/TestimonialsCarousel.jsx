@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Image from '../../../components/AppImage';
 import Button from '../../../components/ui/Button';
 import Icon from '../../../components/AppIcon';
+import user8 from '../../../assets/user-8.png';
+import user7 from '../../../assets/user-7.png';
+import user6 from '../../../assets/user-6.png';
+import user5 from '../../../assets/user-5.png';
+import user4 from '../../../assets/user-4.png';
+import user3 from '../../../assets/user-3.png';
+import user2 from '../../../assets/user-2.png';
+import user1 from '../../../assets/user-1.png';
 
 const TestimonialsCarousel = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -11,59 +19,59 @@ const TestimonialsCarousel = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Mitchell",
+      name: "Arya",
       service: "Bridal Hair & Makeup",
       rating: 5,
-      image: "https://images.pexels.com/photos/3992656/pexels-photo-3992656.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
-      videoThumbnail: "https://images.pexels.com/photos/3992659/pexels-photo-3992659.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      review: `I can't express how amazing my experience was at Glora Beauty Lounge! The team made me feel like a princess on my wedding day. The attention to detail was incredible, and my hair and makeup lasted all day and night. Every guest complimented my look!`,
+      image: user1,
+      // videoThumbnail: "https://images.pexels.com/photos/3992659/pexels-photo-3992659.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      review: `I can't express how amazing my experience was at Glora Beauty Lounge! The team made me feel like a princess on my wedding day. The attention to detail was incredible, and my hair and makeup lasted all day and night.`,
       transcript: `"I was so nervous about my wedding day look, but the team at Glora Beauty Lounge made me feel completely at ease. They listened to all my ideas and created something even more beautiful than I imagined. The trial session was perfect, and on the actual day, everything went smoothly. I felt absolutely stunning and confident. The makeup lasted through tears of joy, dancing, and all the celebrations. I would recommend them to every bride!"`,
       date: "2 weeks ago",
       verified: true
     },
     {
       id: 2,
-      name: "Emily Rodriguez",
+      name: "Nikhil",
       service: "Hair Color & Cut",
       rating: 5,
-      image: "https://images.pixabay.com/photo/2020/10/21/18/07/makeup-5673556_960_720.jpg",
-      videoThumbnail: "https://images.pixabay.com/photo/2016/03/27/07/32/beauty-1282265_960_720.jpg",
-      review: `After years of bad hair experiences, I finally found my salon home! The colorist understood exactly what I wanted and delivered beyond my expectations. The cut is perfect for my face shape, and I've received so many compliments. Worth every penny!`,
+      image: user2,
+      // videoThumbnail: "https://images.pixabay.com/photo/2016/03/27/07/32/beauty-1282265_960_720.jpg",
+      review: `After years of bad hair experiences, I finally found my salon home! The colorist understood exactly what I wanted and delivered beyond my expectations. The cut is perfect for my face shape.`,
       transcript: `"I had been going to different salons for years, never quite happy with the results. When I found Glora Beauty Lounge, everything changed. The consultation was thorough, they explained every step, and the final result was exactly what I had been dreaming of. The color is vibrant, the cut is stylish, and it's so easy to maintain. I finally feel confident about my hair!"`,
       date: "1 month ago",
       verified: true
     },
     {
       id: 3,
-      name: "Maria Gonzalez",
+      name: "Aiswarya",
       service: "Anti-Aging Facial",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-      videoThumbnail: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      review: `The skincare treatments here are phenomenal! I've been coming for 6 months now, and my skin has never looked better. The esthetician is knowledgeable and creates personalized treatment plans. My friends keep asking what I'm doing differently!`,
+      image: user3,
+      // videoThumbnail: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      review: `The skincare treatments here are phenomenal! I've been coming for 6 months now, and my skin has never looked better. The esthetician is knowledgeable and creates personalized treatment plans.`,
       transcript: `"I started coming to Glora Beauty Lounge because I was concerned about aging and wanted professional skincare advice. The esthetician did a complete skin analysis and created a treatment plan specifically for me. After just a few sessions, I noticed my skin was brighter and more hydrated. Now, six months later, people tell me I look years younger. The products they recommended for home care have also made a huge difference."`,
       date: "3 weeks ago",
       verified: true
     },
     {
       id: 4,
-      name: "Jessica Thompson",
+      name: "Lakshmi Priya",
       service: "Event Makeup",
       rating: 5,
-      image: "https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",
-      videoThumbnail: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
-      review: `I needed makeup for a corporate photoshoot, and they delivered perfection! The makeup artist understood the lighting requirements and created a flawless look that photographed beautifully. Professional, punctual, and talented!`,
+      image: user4,
+      // videoThumbnail: "https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      review: `I needed makeup for a corporate photoshoot, and they delivered perfection! The makeup artist understood the lighting requirements and created a flawless look that photographed beautifully.`,
       transcript: `"I had a very important corporate photoshoot and needed makeup that would look professional yet striking on camera. The makeup artist at Glora Beauty Lounge was incredibly professional and knowledgeable about photography makeup. She asked about the lighting, the type of photos, and my personal style. The result was absolutely perfect - I looked polished and confident, and the photos turned out amazing. I'll definitely be back for future events."`,
       date: "2 months ago",
       verified: true
     },
     {
       id: 5,
-      name: "Amanda Chen",
+      name: "Diya",
       service: "Full Makeover",
       rating: 5,
-      image: "https://images.pixabay.com/photo/2016/03/27/07/32/beauty-1282265_960_720.jpg",
-      videoThumbnail: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      image: user5,
+      // videoThumbnail: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       review: `I treated myself to a full makeover for my 40th birthday, and it was the best gift ever! New haircut, color, and a makeup lesson - I left feeling like a completely new person. The confidence boost was incredible!`,
       transcript: `"Turning 40 was a big milestone for me, and I wanted to do something special. I decided on a full makeover at Glora Beauty Lounge, and it exceeded all my expectations. They completely transformed my look while still keeping it true to who I am. The haircut and color are so flattering, and the makeup lesson taught me techniques I use every day. I feel more confident and beautiful than I have in years. It was truly a life-changing experience."`,
       date: "1 month ago",
@@ -71,25 +79,38 @@ const TestimonialsCarousel = () => {
     },
     {
       id: 6,
-      name: "Rachel Williams",
+      name: "Naveen",
       service: "Acne Treatment",
       rating: 5,
-      image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80",
-      videoThumbnail: "https://images.pexels.com/photos/3992656/pexels-photo-3992656.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+      image: user6,
+      // videoThumbnail: "https://images.pexels.com/photos/3992656/pexels-photo-3992656.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
       review: `After struggling with acne for years, I finally found a solution at Glora Beauty Lounge. The customized treatment plan and professional products have cleared my skin completely. I can't thank them enough!`,
-      transcript: `"I had been dealing with adult acne for several years and tried everything - over-the-counter products, different dermatologists, you name it. Nothing worked until I came to Glora Beauty Lounge. The esthetician took time to understand my skin history and created a comprehensive treatment plan. The professional treatments combined with the right home care products have completely transformed my skin. For the first time in years, I feel comfortable going out without makeup. I'm so grateful for their expertise and patience."`,date: "6 weeks ago",
+      transcript: `"I had been dealing with adult acne for several years and tried everything - over-the-counter products, different dermatologists, you name it. Nothing worked until I came to Glora Beauty Lounge. The esthetician took time to understand my skin history and created a comprehensive treatment plan. The professional treatments combined with the right home care products have completely transformed my skin. For the first time in years, I feel comfortable going out without makeup. I'm so grateful for their expertise and patience."`,
+      date: "2 weeks ago",
       verified: true
     },
     {
       id: 7,
-      name: "Lisa Park",service: "Nail Art & Manicure",rating: 5,image: "https://images.pexels.com/photos/3992659/pexels-photo-3992659.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop",videoThumbnail: "https://images.pixabay.com/photo/2020/10/21/18/07/makeup-5673556_960_720.jpg",review: `The nail art here is absolutely stunning! I always get compliments on my nails after visiting Glora Beauty Lounge. The attention to detail and creativity is unmatched. My nails have never looked better!`,transcript: `"I love getting my nails done, but I was never completely satisfied with the results until I found Glora Beauty Lounge. The nail technicians here are true artists. They listen to my ideas and always add their own creative touches that make the design even better. The quality of their work is exceptional - my manicures last for weeks without chipping. I always leave with nails that are absolutely perfect, and I get compliments everywhere I go."`,date: "2 weeks ago",
+      name: "Alex",
+      service: "pedicure",
+      rating: 5,
+      image: user7,
+      // videoThumbnail: "https://images.pixabay.com/photo/2020/10/21/18/07/makeup-5673556_960_720.jpg",
+      review: `The nail art here is absolutely stunning! I always get compliments on my nails after visiting Glora Beauty Lounge. The attention to detail and creativity is unmatched. My nails have never looked better!`,
+      transcript: `"I love getting my nails done, but I was never completely satisfied with the results until I found Glora Beauty Lounge. The nail technicians here are true artists. They listen to my ideas and always add their own creative touches that make the design even better. The quality of their work is exceptional - my manicures last for weeks without chipping. I always leave with nails that are absolutely perfect, and I get compliments everywhere I go."`,
+      date: "2 weeks ago",
       verified: true
     },
     {
       id: 8,
-      name: "Nicole Davis",service: "Lash Extensions",rating: 5,image: "https://images.pixabay.com/photo/2020/10/21/18/07/makeup-5673556_960_720.jpg",videoThumbnail: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      name: "Jessica John",
+      service: "Lash Extensions",
+      rating: 5,
+      image: user8,
+      // videoThumbnail: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
       review: `My lash extensions are perfect! They look so natural yet dramatic, and they've lasted beautifully. The application was comfortable, and the results are exactly what I wanted. I wake up feeling glamorous every day!`,
-      transcript: `"I was hesitant about getting lash extensions because I'd heard mixed reviews, but the lash artist at Glora Beauty Lounge put all my concerns to rest. She explained the entire process, helped me choose the perfect length and curl, and the application was so comfortable I almost fell asleep. The results are incredible - my lashes look naturally long and full, but with just the right amount of drama. They've lasted perfectly, and my morning routine is so much easier now. I feel beautiful and confident every single day."`,date: "3 weeks ago",
+      transcript: `"I was hesitant about getting lash extensions because I'd heard mixed reviews, but the lash artist at Glora Beauty Lounge put all my concerns to rest. She explained the entire process, helped me choose the perfect length and curl, and the application was so comfortable I almost fell asleep. The results are incredible - my lashes look naturally long and full, but with just the right amount of drama. They've lasted perfectly, and my morning routine is so much easier now. I feel beautiful and confident every single day."`,
+      date: "3 weeks ago",
       verified: true
     }
   ];
@@ -157,7 +178,7 @@ const TestimonialsCarousel = () => {
           <div className="bg-background rounded-2xl p-8 lg:p-12 border border-border-muted shadow-card">
             <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-6 lg:space-y-0 lg:space-x-8">
               {/* Video Thumbnail / Client Image */}
-              <div className="flex-shrink-0">
+              {/* <div className="flex-shrink-0">
                 <div className="relative">
                   <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-2xl overflow-hidden">
                     <Image
@@ -166,14 +187,13 @@ const TestimonialsCarousel = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  {/* Play Button Overlay */}
                   <div className="absolute inset-0 bg-black/40 rounded-2xl flex items-center justify-center">
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform duration-200">
                       <Icon name="Play" size={20} color="var(--color-primary-foreground)" />
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* Testimonial Content */}
               <div className="flex-1 text-center lg:text-left">
@@ -249,7 +269,7 @@ const TestimonialsCarousel = () => {
           {/* Navigation Arrows */}
           <button
             onClick={prevTestimonial}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center text-primary hover:bg-background hover:scale-110 transition-all duration-300 shadow-card"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 h-12 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center text-primary hover:bg-background hover:scale-110 transition-all duration-300 shadow-card"
             aria-label="Previous testimonial"
           >
             <Icon name="ChevronLeft" size={24} color="currentColor" />
@@ -257,7 +277,7 @@ const TestimonialsCarousel = () => {
 
           <button
             onClick={nextTestimonial}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center text-primary hover:bg-background hover:scale-110 transition-all duration-300 shadow-card"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 h-12 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center text-primary hover:bg-background hover:scale-110 transition-all duration-300 shadow-card"
             aria-label="Next testimonial"
           >
             <Icon name="ChevronRight" size={24} color="currentColor" />
@@ -308,7 +328,7 @@ const TestimonialsCarousel = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        {/* <div className="text-center mt-16">
           <div className="bg-background rounded-2xl p-8 border border-border-muted">
             <h3 className="text-2xl font-heading font-bold text-text-primary mb-4">
               Ready to Join Our Happy Clients?
@@ -327,7 +347,7 @@ const TestimonialsCarousel = () => {
               Book Your Experience
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
