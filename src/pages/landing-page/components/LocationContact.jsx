@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import Button from '../../../components/ui/Button';
 import Icon from '../../../components/AppIcon';
+import { FaWhatsapp } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 const LocationContact = () => {
   const [selectedDay, setSelectedDay] = useState('monday');
 
   const businessHours = {
-    monday: { open: '9:00 AM', close: '7:00 PM', isOpen: true },
-    tuesday: { open: '9:00 AM', close: '7:00 PM', isOpen: true },
-    wednesday: { open: '9:00 AM', close: '7:00 PM', isOpen: true },
-    thursday: { open: '9:00 AM', close: '8:00 PM', isOpen: true },
-    friday: { open: '9:00 AM', close: '8:00 PM', isOpen: true },
-    saturday: { open: '8:00 AM', close: '6:00 PM', isOpen: true },
-    sunday: { open: '10:00 AM', close: '5:00 PM', isOpen: true }
+    monday: { open: '8:00 AM', close: '9:00 PM', isOpen: true },
+    tuesday: { open: '8:00 AM', close: '9:00 PM', isOpen: true },
+    wednesday: { open: '8:00 AM', close: '9:00 PM', isOpen: true },
+    thursday: { open: '8:00 AM', close: '9:00 PM', isOpen: true },
+    friday: { open: '8:00 AM', close: '9:00 PM', isOpen: true },
+    saturday: { open: '8:00 AM', close: '9:00 PM', isOpen: true },
+    sunday: { open: '10:00 AM', close: '9:00 PM', isOpen: true }
   };
 
   const contactInfo = {
-    address: "123 Beauty Street, Salon District, City 12345",
-    phone: "(123) 456-7890",
-    email: "hello@glorabeautylounge.com",
-    whatsapp: "(123) 456-7890",
+    address: "Glora Beauty Lounge, Metro City Plaza, VIP Road, Opp Cochin International Airport, Vappalasserry P.O, Ernakulam, 683572",
+    phone: "+91 - 9846161869",
+    email: "glorabeautylounge@gmail.com",
+    whatsapp: "+91 - 9846161869",
     instagram: "@glorabeautylounge",
     facebook: "GloraBeautyLounge"
   };
@@ -123,13 +126,13 @@ const LocationContact = () => {
                 height="100%"
                 title="Glora Beauty Lounge Location"
                 className="border-0"
-                allowfullscreen="" 
+                allowFullScreen="" 
                 loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer-when-downgrade"
                 />
                 
                 {/* Map Overlay */}
-                <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-lg p-3 shadow-card">
+                {/* <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-sm rounded-lg p-3 shadow-card">
                   <div className="flex items-center space-x-2">
                     <div className={`w-3 h-3 rounded-full ${
                       dayStatus.status === 'open' ? 'bg-success animate-pulse' : 'bg-error'
@@ -138,7 +141,7 @@ const LocationContact = () => {
                       {dayStatus.message}
                     </span>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -211,7 +214,7 @@ const LocationContact = () => {
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <Icon name="MessageCircle" size={20} color="var(--color-primary)" className="mt-1 flex-shrink-0" />
+                  <FaWhatsapp name="MessageCircle" size={20} color="var(--color-primary)" className="mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-body font-medium text-text-primary">WhatsApp</p>
                     <button
@@ -230,21 +233,21 @@ const LocationContact = () => {
                 <div className="flex space-x-4">
                   <button
                     onClick={() => window.open(`https://instagram.com/${contactInfo.instagram.replace('@', '')}`, '_blank')}
-                    className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform duration-200"
+                    className="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
                   >
-                    <Icon name="Instagram" size={20} color="currentColor" />
+                    <FaInstagram name="Instagram" size={20} color="currentColor" />
                   </button>
                   <button
                     onClick={() => window.open(`https://facebook.com/${contactInfo.facebook}`, '_blank')}
-                    className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform duration-200"
+                    className="w-10 h-10 bg-[#1877F2] rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
                   >
-                    <Icon name="Facebook" size={20} color="currentColor" />
+                    <FaFacebook  name="Facebook" size={20} color="currentColor" />
                   </button>
                   <button
                     onClick={handleWhatsApp}
                     className="w-10 h-10 bg-success rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
                   >
-                    <Icon name="MessageCircle" size={20} color="currentColor" />
+                    <FaWhatsapp name="MessageCircle" size={20} color="currentColor" />
                   </button>
                 </div>
               </div>
@@ -314,7 +317,7 @@ const LocationContact = () => {
         </div>
 
         {/* Emergency Contact */}
-        <div className="mt-16 bg-warning/10 rounded-2xl p-8 border border-warning/20 text-center">
+        {/* <div className="mt-16 bg-warning/10 rounded-2xl p-8 border border-warning/20 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Icon name="Clock" size={24} color="var(--color-warning)" />
             <h3 className="text-xl font-heading font-bold text-warning">
@@ -346,7 +349,7 @@ const LocationContact = () => {
               Send Email
             </Button>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

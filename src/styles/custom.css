@@ -16,7 +16,6 @@ img.main-round-logo {
   }
 }
 
-
 img.main-round-logo:hover {
     box-shadow: 0 0 30px #FFD164;
 }
@@ -78,4 +77,25 @@ img.main-round-logo:hover {
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
     background-color: var(--color-primary-foreground);
+}
+
+.footer-section {
+    padding-top: 4rem;
+}
+
+.copyright-div {
+    padding: 10px 2rem 10px 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .copyright-div {
+    flex-direction: column !important;
+    gap: 0.25rem;
+    text-align: center;
+  }
 }

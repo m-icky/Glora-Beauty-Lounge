@@ -15,15 +15,15 @@ const FAQSection = () => {
     {
       id: 2,
       question: "How far in advance should I book my appointment?",
-      answer: `We recommend booking at least 1-2 weeks in advance for regular services, and 4-6 weeks ahead for bridal packages or special event services. Weekend appointments tend to fill up quickly, so earlier booking is advised. For urgent appointments, please call us directly as we may have last-minute availability due to cancellations.`,
+      answer: `We recommend booking at least 2-4 days in advance for regular services, and 2-4 weeks ahead for bridal packages or special event services. Weekend appointments tend to fill up quickly, so earlier booking is advised. For urgent appointments, please call us directly as we may have last-minute availability due to cancellations.`,
       category: "Booking"
     },
-    {
-      id: 3,
-      question: "What is your cancellation and rescheduling policy?",
-      answer: `We require 24-hour notice for cancellations or rescheduling to avoid a cancellation fee. Same-day cancellations may incur a 50% service charge. No-shows will be charged the full service amount. We understand emergencies happen, so please contact us as soon as possible if you need to make changes to your appointment.`,
-      category: "Policies"
-    },
+    // {
+    //   id: 3,
+    //   question: "What is your cancellation and rescheduling policy?",
+    //   answer: `We require 24-hour notice for cancellations or rescheduling to avoid a cancellation fee. Same-day cancellations may incur a 50% service charge. No-shows will be charged the full service amount. We understand emergencies happen, so please contact us as soon as possible if you need to make changes to your appointment.`,
+    //   category: "Policies"
+    // },
     {
       id: 4,
       question: "Do you offer bridal and group services?",
@@ -82,7 +82,7 @@ const FAQSection = () => {
   };
 
   const handleContactClick = () => {
-    window.open('tel:+1234567890', '_self');
+    window.open('tel:+919846161869', '_self');
   };
 
   return (
@@ -175,7 +175,7 @@ const FAQSection = () => {
               iconName="Phone"
               iconPosition="left"
             >
-              Call Us: (123) 456-7890
+              Call Us: +91 - 9846161869
             </Button>
             
             <Button
@@ -227,7 +227,7 @@ const FAQSection = () => {
               size="sm"
               onClick={() => {
                 const message = encodeURIComponent("Hi! I have a question about your services.");
-                window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+                window.open(`https://wa.me/9846161869?text=${message}`, '_blank');
               }}
               className="font-cta font-semibold text-primary hover:text-primary-foreground hover:bg-primary"
             >
@@ -249,7 +249,7 @@ const FAQSection = () => {
               variant="ghost"
               size="sm"
               onClick={() => {
-                const address = encodeURIComponent("123 Beauty Street, Salon District, City 12345");
+                const address = encodeURIComponent("Glora Beauty Lounge, Metro City Plaza, VIP Road, Opp Cochin International Airport, Vappalasserry P.O, Ernakulam, 683572");
                 window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
               }}
               className="font-cta font-semibold text-primary hover:text-primary-foreground hover:bg-primary"

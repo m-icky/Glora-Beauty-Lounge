@@ -1,13 +1,13 @@
 import React from 'react';
 import HeroCarousel from './components/HeroCarousel';
 import ServicesShowcase from './components/ServicesShowcase';
-import TransformationGallery from './components/TransformationGallery';
+// import TransformationGallery from './components/TransformationGallery';
 import TestimonialsCarousel from './components/TestimonialsCarousel';
-import StaffExpertise from './components/StaffExpertise';
+// import StaffExpertise from './components/StaffExpertise';
 import BookingForm from './components/BookingForm';
 import PromotionalOffers from './components/PromotionalOffers';
 import LocationContact from './components/LocationContact';
-import SocialMediaFeed from './components/SocialMediaFeed';
+// import SocialMediaFeed from './components/SocialMediaFeed';
 import FAQSection from './components/FAQSection';
 import FinalBookingCTA from './components/FinalBookingCTA';
 import ScrollToTopButton from './components/ScrollToTopButton';
@@ -32,19 +32,19 @@ const LandingPage = () => {
       <PromotionalOffers />
       
       {/* Transformation Gallery */}
-      <TransformationGallery />
+      {/* <TransformationGallery /> */}
       
       {/* Testimonials Carousel */}
       <TestimonialsCarousel />
       
       {/* Staff Expertise */}
-      <StaffExpertise />
+      {/* <StaffExpertise /> */}
       
       {/* Booking Form */}
       <BookingForm />
       
       {/* Social Media Feed */}
-      <SocialMediaFeed />
+      {/* <SocialMediaFeed /> */}
       
       {/* Location & Contact */}
       <LocationContact />
