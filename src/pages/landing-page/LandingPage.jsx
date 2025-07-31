@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroCarousel from './components/HeroCarousel';
 import ServicesShowcase from './components/ServicesShowcase';
 // import TransformationGallery from './components/TransformationGallery';
@@ -12,8 +12,33 @@ import FAQSection from './components/FAQSection';
 import FinalBookingCTA from './components/FinalBookingCTA';
 import ScrollToTopButton from './components/ScrollToTopButton';
 // import BackgroundMusicWithPermission from '../../components/BackgroundMusicWithPermission';
+import roundLogo from '../../assets/logo_round.png'
+
+const Loader = () => {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="animate-spin rounded-full border-t-4 border-primary initial-loader"></div>
+        <img
+          src={roundLogo}
+          alt="Main logo"
+          className="w-full h-auto rounded-xl main-round-logo loader"
+        />
+    </div>
+  );
+};
 
 const LandingPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loader />
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Background music with permission */}
