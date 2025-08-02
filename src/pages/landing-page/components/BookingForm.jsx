@@ -18,9 +18,9 @@ const BookingForm = () => {
     phone: '',
   });
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [bookingSuccess, setBookingSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const [errors, setErrors] = useState({});
   const { width, height } = useWindowSize()
   const SERVICE_ID = 'service_wn5mqh7';
@@ -129,21 +129,10 @@ const BookingForm = () => {
     await emailjs.send(SERVICE_ID, USER_TEMPLATE_ID, formData, PUBLIC_KEY);
     await emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, formData, PUBLIC_KEY);
     setShowSuccess(true);
-    setBookingSuccess(true);
+    setShowConfetti(true);
     setTimeout(() => {
-      setBookingSuccess(false);
-      setShowSuccess(false);
-      setCurrentStep(1);
-      setFormData({
-        service: '',
-        date: '',
-        time: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-      });
-    }, 10000);
+      setShowConfetti(false);
+    }, 6000);
     // Clear form data after successful submission
     } catch (error) {
       alert('Failed to send confirmation email, retry after sometime.');
@@ -204,17 +193,22 @@ const BookingForm = () => {
   if (showSuccess) {
     return (
       <section id="booking" className="py-16 lg:py-24 bg-surface">
+         {showConfetti && (
+          <div className="fixed top-0 left-0 w-screen h-screen z-50 pointer-events-none">
+            <Confetti width={width} height={height} numberOfPieces={300} />
+          </div>
+        )}
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="bg-background rounded-2xl p-8 lg:p-12 border border-border-muted shadow-card text-center">
             <div className="w-20 h-20 bg-success rounded-full flex items-center justify-center mx-auto mb-6">
               <Icon name="Check" size={40} color="white" />
             </div>
             <h2 className="text-3xl font-heading font-bold text-text-primary mb-4">
-              Booking Confirmed!
+              Thank you for choosing Glora Beauty Lounge
             </h2>
             <p className="text-lg text-text-secondary font-body mb-6">
-              Thank you {formData.firstName}! Your appointment for {formData.service} on{' '}
-              {new Date(formData.date).toLocaleDateString()} at {formData.time} has been confirmed.
+              Hi {formData.firstName}! We’ve received your booking for {formData.service} on{' '}
+              {new Date(formData.date).toLocaleDateString()} at {formData.time} will get back to you as soon as possible to confirm the booking.
             </p>
             <div className="bg-surface rounded-lg p-6 mb-6">
               <h3 className="text-xl font-heading font-bold text-text-primary mb-4">
@@ -265,16 +259,8 @@ const BookingForm = () => {
     );
   }
 
-  
-
   return (
     <>
-      {bookingSuccess && (
-      <Confetti
-        width={width}
-        height={height}
-      />
-    )}
     <section id="booking" className="py-16 lg:py-24 bg-surface">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
@@ -504,13 +490,13 @@ const BookingForm = () => {
             {currentStep === 3 && (
               <div className="space-y-6">
                 <h3 className="text-2xl font-heading font-bold text-text-primary mb-6">
-                  Confirm Your Appointment
+                  Appointment Details
                 </h3>
 
                 {/* Appointment Summary */}
                 <div className="bg-surface rounded-lg p-6 border border-border-muted">
                   <h4 className="text-lg font-heading font-bold text-text-primary mb-4">
-                    Appointment Details
+                    Appointment Details of {formData.firstName} {formData.lastName}
                   </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between">
